@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class HistorianHysteria{
+public class HistorianHysteria2{
 
 	public static void main(String[] args){
 		List<Integer> xListed = new ArrayList<>();
@@ -24,16 +24,20 @@ public class HistorianHysteria{
 		}
 
 			int[] xOrdered = xListed.stream().mapToInt(Integer::intValue).toArray();
-		int[] yOrdered = yListed.stream().mapToInt(Integer::intValue).toArray();
+			int[] yOrdered = yListed.stream().mapToInt(Integer::intValue).toArray();
 
-		Arrays.sort();
+					//TestCase
+				// int[] xOrdered = {3,4,2,1,3,3};
+				// int[] yOrdered = {4,3,5,3,9,3};
+
+		Arrays.sort(xOrdered);
 		Arrays.sort(yOrdered);
 		
 
 		HashMap<Integer, Integer> repeatedMapped = new HashMap<>();
 
 		for(int i = 0; i < xOrdered.length; i ++){
-			for(int j = 0;  j < yOrdered.length; y++){
+			for(int j = 0;  j < yOrdered.length; j++){
 					int keyToCheck = xOrdered[i]; 
 				if(!repeatedMapped.containsKey(keyToCheck)){
 					if(keyToCheck == yOrdered[j]){
@@ -45,12 +49,25 @@ public class HistorianHysteria{
 							repeatedMapped.put(keyToCheck, currentValue);
 				}
 
-				//TODO: Still missing, what happen if, a number on the right is more than 1 time in the same line (right) this algorithm will
-				//count again numbers of time it repeated in the left (resulting in a invalid sum)
+				
 
 
 			}
 		}
+
+			int sumMultResult = 0;
+
+			for(Map.Entry<Integer, Integer> entry : repeatedMapped.entrySet()){
+				int key = entry.getKey();
+				int value = entry.getValue();
+
+
+				int result = key * value;
+				sumMultResult+=result;
+			}
+
+				System.out.println(sumMultResult);
+
 
 
 
