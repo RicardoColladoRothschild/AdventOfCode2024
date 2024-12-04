@@ -38,7 +38,7 @@ public class NosedReport2 {
                 dataInput.add(row);
             }
         } catch (IOException ex) {
-            System.out.println("Error leyendo el archivo: " + ex.getMessage());
+            System.out.println("Exeption IO happen: " + ex.getMessage());
             return;
         }
 
@@ -55,18 +55,18 @@ public class NosedReport2 {
             }
 
            
-            boolean dampenerWorks = false;
+            boolean anulador = false;
             for (int i = 0; i < original.length; i++) {
                 int[] modified = new int[original.length - 1];
                 System.arraycopy(original, 0, modified, 0, i);
                 System.arraycopy(original, i + 1, modified, i, original.length - i - 1); 
                 if (isSecure(modified)) {
-                    dampenerWorks = true;
+                    anulador = true;
                     break;
                 }
             }
 
-            if (dampenerWorks) secureCount++;
+            if (anulador) secureCount++;
         }
 
         System.out.println("Secure count: " + secureCount);
