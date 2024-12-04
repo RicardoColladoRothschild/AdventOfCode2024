@@ -28,7 +28,7 @@ public class NosedReport2 {
     public static void main(String[] args) {
         List<List<Integer>> dataInput = new ArrayList<>();
 
-       
+
         try (BufferedReader br = new BufferedReader(new FileReader("puzzleInput.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
