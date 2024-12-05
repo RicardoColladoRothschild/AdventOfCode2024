@@ -15,8 +15,11 @@ public class ComputerCorrupted2{
 
         }catch(IOException e){}
 
+        boolean isEnabled = true;
+        // String regex = "do\\(\\)(?:(?!don't\\(\\)).)*?mul\\((\\d{1,3}),(\\d{1,3})\\)";
+        // String regex = "(?:^|do\\(\\)(?:(?!don't\\(\\)).)*?)mul\\((\\d{1,3}),(\\d{1,3})\\)";
+        String regex = "do\\(\\)|don't\\(\\)|mul\\((\\d{1,3}),(\\d{1,3})\\)";
 
-        String regex = "mul\\((\\d{1,3}),(\\d{1,3})\\)";
 
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(wholeLine);
@@ -24,9 +27,19 @@ public class ComputerCorrupted2{
         int total = 0;
 
         while(matcher.find()){
-            int num1 = Integer.parseInt(matcher.group(1));
-            int num2 = Integer.parseInt(matcher.group(2));
-            total+= num1 * num2;
+            String match = matcher.group();
+
+                if(match.equals("do()")){
+                    isEnabled = true;
+                }else if(match.equals("don't()")){
+                    isEnabled = false;
+                }  else if (isEnabled && matcher.group(1) != null && matcher.group(2) != null) {
+                    int num1 = Integer.parseInt(matcher.group(1));
+                    int num2 = Integer.parseInt(matcher.group(2));
+                    total += num1 * num2;
+                }
+
+          
         }
         System.out.println(total);
     }
